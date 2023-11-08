@@ -19,3 +19,21 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns += staticfiles_urlpatterns()
 ```
 - ref: <https://gist.github.com/rpq/4536415>
+
+
+`-` post_detail.html <body>에 아래의 코드 추가
+
+```python
+<div class="card mb-4">
+    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+    <div class="card-body">
+        <h2 class="card-title">{{ p.title }}</h2>
+        <p class="card-text">{{ p.content }}</p>
+        <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+    </div>
+    <div class="card-footer text-muted">
+        Posted on {{ p.created_at }} by
+        <a href="#">작성자명 쓸 위치(개발예정)</a>
+    </div>
+</div>
+```
