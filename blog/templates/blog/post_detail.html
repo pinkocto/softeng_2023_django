@@ -1,17 +1,50 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>{{ post.title }} - Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+    <script src="https://kit.fontawesome.com/98680996bb.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <nav>
-    <a href="/blog/">블로그 목록으로 가기</a>
+    <a href="/blog/">
+        <i class="fas fa-home"></i> 블로그 홈으로 가기
+    </a>
 </nav>
 
 <h1>{{ post.title }}</h1>
-<h4>{{ post.created_at }}</h4>
+<p>{{ post.created_at }}</p>
+{% if post.head_image %}
+<img class="img-fluid rounded" src="{{ post.head_image.url }}" alt="{{ post.title }} head_image">
+{% else %}
+<img class="img-fluid rounded" src="https://picsum.photos/seed/{{ post.id }}/600/100" alt="random_image">
+{% endif %}
+
 <p> {{ post.content }}</p>
+
+<!--다운로드버튼을 눌르면 파일이 다운로드 된다.-->
+{% if post.file_upload %}
+<a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button" download>Download:
+<p>
+    {% if post.get_file_ext == "csv" %}
+<!--    <span style="color: red;">csv아이콘</span>-->
+    <i class="fas fa-file-csv"></i>
+    {% elif post.get_file_ext == "pdf" %}
+<!--    <span style="color: red;">pdf아이콘</span>-->
+    <i class="fas fa-file-pdf"></i>
+    {% else %}
+<!--    <span style="color: red;">default아이콘</span>-->
+    <i class="far fa-file"></i>
+    {% endif %}
+    {{ post.get_file_name }}
+<!--    <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button" download>Download</a>-->
+</p>
+</a>
+{% endif %}
+
 <hr/>
 
 <h3>여기 댓글이 들어올 수 있겠죠?</h3>

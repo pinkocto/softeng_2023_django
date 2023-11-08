@@ -37,3 +37,4 @@ urlpatterns += staticfiles_urlpatterns()
     </div>
 </div>
 ```
+***(주의)*** : `blog/templates/blog/index.html` 은 이제 필요없는 파일이다. (경로를 자동으로 post_detail로 잡아주면서 index.html은 필요없어졌다.)

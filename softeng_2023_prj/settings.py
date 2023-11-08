@@ -116,7 +116,7 @@ USE_TZ = True
 # 이미지 폴더 지정
 STATIC_URL = "static/"
 
-# 이부분에 추가
+# 이부분에 추가 (/media/ 로 들어가면 _media루트를 찾아간다.: 프론트엔드에 접속했을 때 백엔드 어디를 찾아줄거야?)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
 
